@@ -77,11 +77,11 @@
                     @php
                     $dashboard = '';
                     if (Auth::guard('admin')->check()) {
-                        $dashboard = 'admin.dashboard';
+                        $dashboard = route('admin.dashboard');
                     } elseif (Auth::guard('guru')->check()) {
-                        $dashboard = 'guru.dashboard';
+                        $dashboard = route('guru.dashboard');
                     } elseif (Auth::guard('siswa')->check()) {
-                        $dashboard = 'siswa.dashboard';
+                        $dashboard = route('siswa.dashboard');
                     }
                     @endphp
                     <a class="menu-link {{request()->is('admin/dashboard') || request()->is('guru/dashboard') || request()->is('siswa/dashboard') ? 'active' : ''}} menu-center" href="{{ $dashboard }}" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
@@ -108,35 +108,30 @@
                             </span>
                             <!--end::Svg Icon-->
                         </span>
-                        <span class="menu-title">Customers</span>
+                        <span class="menu-title">Data Master</span>
                         <span class="menu-arrow"></span>
                     </span>
-                    <div class="menu-sub menu-sub-accordion" kt-hidden-height="117" style="display: none; overflow: hidden;">
-                        <div class="menu-item">
-                            <a class="menu-link" href="../../demo8/dist/apps/customers/getting-started.html">
-                                <span class="menu-bullet">
-                                    <span class="bullet bullet-dot"></span>
-                                </span>
-                                <span class="menu-title">Getting Started</span>
-                            </a>
+                    @if(Str::title(Auth::guard('admin')->user()->role))
+                        @php $role = 'admin'; @endphp
+                        <div class="menu-sub menu-sub-accordion" kt-hidden-height="117" style="display: none; overflow: hidden;">
+                            <div class="menu-item">
+                                <a class="menu-link  {{request()->is('admin/room') || request()->is('guru/room') || request()->is('siswa/room') ? 'active' : ''}} menu-center" href="{{ route('admin.room.index') }}">
+                                    <span class="menu-bullet">
+                                        <span class="bullet bullet-dot"></span>
+                                    </span>
+                                    <span class="menu-title">Ruang Kelas</span>
+                                </a>
+                            </div>
+                            <div class="menu-item">
+                                <a class="menu-link {{request()->is('admin/pelajaran') || request()->is('guru/pelajaran') || request()->is('siswa/pelajaran') ? 'active' : ''}} menu-center" href="{{ route('admin.pelajaran.index') }}">
+                                    <span class="menu-bullet">
+                                        <span class="bullet bullet-dot"></span>
+                                    </span>
+                                    <span class="menu-title">Mata Pelajaran</span>
+                                </a>
+                            </div>
                         </div>
-                        <div class="menu-item">
-                            <a class="menu-link" href="../../demo8/dist/apps/customers/list.html">
-                                <span class="menu-bullet">
-                                    <span class="bullet bullet-dot"></span>
-                                </span>
-                                <span class="menu-title">Customer Listing</span>
-                            </a>
-                        </div>
-                        <div class="menu-item">
-                            <a class="menu-link" href="../../demo8/dist/apps/customers/view.html">
-                                <span class="menu-bullet">
-                                    <span class="bullet bullet-dot"></span>
-                                </span>
-                                <span class="menu-title">Customer Details</span>
-                            </a>
-                        </div>
-                    </div>
+                    @endif
                 </div>
                 <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                     <span class="menu-link">

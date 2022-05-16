@@ -26,10 +26,10 @@ toastr.options = {
     "hideMethod": "fadeOut"
 };
 function success_toastr(pesan){
-    toastr.success(pesan, "Koperasi Bintang Laguboti");
+    toastr.success(pesan, "SMK Negeri 3 Balige");
 }
 function error_toastr(pesan){
-    toastr.error(pesan, "Koperasi Bintang Laguboti");
+    toastr.error(pesan, "SMK Negeri 3 Balige");
 }
 function obj_autosize(obj){
     autosize($('#' + obj));

@@ -77,6 +77,7 @@ function handle_confirm(title, confirm_title, deny_title, method, route){
         }
     });
 }
+
 function handle_check(route){
     $.ajax({
         type: "PATCH",

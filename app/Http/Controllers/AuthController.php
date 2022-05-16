@@ -140,6 +140,6 @@ class AuthController extends Controller
         }elseif (Auth::guard('siswa')->check()) {
             Auth::guard('siswa')->logout();
         }
-        return redirect('auth');
+        return redirect('/');
     }
 }
